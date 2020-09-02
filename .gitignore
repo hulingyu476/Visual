@@ -1,0 +1,8 @@
+#vs project output file
+*.pdb
+*.iobj
+*.ipdb
+*.ilk
+*.ipch
+*.log
+*.tlog
