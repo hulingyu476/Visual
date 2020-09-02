@@ -294,7 +294,7 @@ unsigned int __stdcall fic_xu_update_thread(LPVOID *pParam)
 		//	pPrgCtrl->StepIt(); //步长更新进度条
 		//}
 		Sleep(100);
-		Sleep(60*1000);//delay 
+		Sleep(2*60*1000);//delay 
 	}
 	//pPrgCtrl->SetPos(PrgMax);
 	//::SendMessage(::AfxGetMainWnd()->m_hWnd, WM_MSG_UPDATE_END, 0x01, 0);
@@ -687,6 +687,22 @@ HRESULT usb_load_fw(IBaseFilter *pVCap, ULONG NodeId, load_info *flash_data_info
 	 //m_EditDevUsbPid.Format(_T("%04X"), nId);
 	 //UpdateData(FALSE);
 	 return nId;
+ }
+
+ int  CCameraUpgradeDll::DevReboot()
+ {
+	 IBaseFilter *pVCap = (IBaseFilter *)m_pVCapMult[index];
+	 ULONG NodeId = m_pNodeId[index];
+	 ULONG reboot_flag = 0x15AE3946;
+	 HRESULT hr = FicSetReg(pVCap, NodeId, YHW_REG_SYS_REBOOT, reboot_flag);
+	 if (hr != S_OK)
+	 {
+		 CString StrErr;
+		 StrErr.Format(_T("dll Reboot Camera Error. Code(%08X)."), (ULONG)hr);
+		 _ftprintf_s(stdout, _T("%s\r\n"), StrErr);
+		 return 1;
+	 }
+	 return 0;
  }
 
 HRESULT CCameraUpgradeDll::AutoUpdate()

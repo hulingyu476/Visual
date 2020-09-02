@@ -77,6 +77,8 @@ public:
 	ULONG GetDevVid();
 
 	HRESULT AutoUpdate();
+
+	int DevReboot();
 	
 };
 

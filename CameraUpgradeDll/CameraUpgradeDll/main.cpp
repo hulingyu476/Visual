@@ -85,7 +85,10 @@ extern "C" _declspec(dllexport) int openUpdateFile(char *filePath)//0:正确 (.bin
 	//_ftprintf_s(stdout, _T("SetFwPath = %s \r\n"), strTepm);
 	return 0;
 }
-
+extern "C" _declspec(dllexport)  int CDevReboot()//  DevReboot
+{
+	return cu.DevReboot();
+}
 extern "C" _declspec(dllexport)int getUpdatingProgress()//  返回进度：0~100
 {
 	return updatingProgress;

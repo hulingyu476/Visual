@@ -13,6 +13,7 @@
 #define YHW_REG_USB_VID				0x0F
 #define YHW_REG_USB_PID				0x10
 #define YHW_STR_ID_PLATFORM			0x11
+#define YHW_REG_SYS_REBOOT			0x14
 
 /************************************************************************
 Desc		: Check whether the device is our device, and if so set NodeId.
