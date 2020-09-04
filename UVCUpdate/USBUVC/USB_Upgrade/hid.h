@@ -13,10 +13,10 @@
 
 //VHD
 
-#define USB_VID_VHD			(0x2E7E)
-
-#define USB_PID_JX1700U		(0x080C)
-
+//#define USB_VID_VHD			(0x2E7E)
+//#define USB_PID_JX1700U		(0x080C)
+#define USB_VID_VHD			(0x2757)
+#define USB_PID_JX1700U		(0x2001)
 
 struct usb_id_info {
 	USHORT  usb_vid;

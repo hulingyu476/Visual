@@ -1,0 +1,6 @@
+# 设备平台
+
+HIDUpgradeFirmwareID=DEVICE_UPGRADE_HI3519_HID；
+
+VID=2757；PID=2001；
+

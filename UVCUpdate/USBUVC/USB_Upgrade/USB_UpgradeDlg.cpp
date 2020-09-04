@@ -144,17 +144,17 @@ BOOL CUSB_UpgradeDlg::OnInitDialog()
 			//AfxMessageBox((CString)szArglist[i]);//²âÊÔ
 		char* str;
 		if (nArgs >= 2)
-			{
+		{
 			vid1 = strtol((CString)szArglist[1], &str, 16);
 			cmdstart = true;
-			}
+		}
 		if (nArgs >= 3)
 			pid1 = strtol((CString)szArglist[2], &str, 16);
-			//printf("%d %d", vid1,pid1);
+		//printf("%d %d", vid1,pid1);
 		if (nArgs >= 4)
 			devindex = strtol((CString)szArglist[3], &str, 16);
 		//if ((CString)szArglist[3]!="")
-			
+
 		/*CString s;
 		s.Format("%d %d %d", vid1, pid1, devindex);
 		AfxMessageBox(s);*/
@@ -1401,6 +1401,7 @@ void CUSB_UpgradeDlg::PromptStringInit(void)
 			PromptString += ("Camera Information :");
 			//PromptString += "\r\n";
 		}
+		
 
 		if (Hid_Upgrade.CameraInfo.HIDUpgradeFirmwareID == DEVICE_UPGRADE_FX3_BOOT_LOADER
 			|| Hid_Upgrade.CameraInfo.HIDUpgradeFirmwareID == DEVICE_UPGRADE_FX3_BOOT_LOADER_V1)
