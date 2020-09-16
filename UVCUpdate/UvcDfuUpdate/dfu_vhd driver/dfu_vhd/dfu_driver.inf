@@ -1,0 +1,70 @@
+﻿;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Installation INF for the camera DFU driver  					;;
+;;									     	;;
+;; © ValueHD Corporation. All rights reserved.			     		;;
+;;										;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[Version]
+Signature="$Windows NT$"
+Class=USBDevice
+ClassGUID={88BAE032-5A81-49F0-BC3D-A4FF138216D6}
+Provider=%ManufacturerName%
+CatalogFile=dfu_driver.cat
+DriverVer = 05/27/2019,1.0.0.33
+
+; ================ Manufacturer/Models sections ================
+
+[Manufacturer]
+%ManufacturerName% = DFU_Device, NTx86, NTamd64
+
+[DFU_Device.NTx86]
+;Run-time DFU Interface
+%DFURunTime%        = DFU_Install, USB\Class_FE&SubClass_01&Prot_01
+%DFUMode%           = DFU_Install, USB\Class_FE&SubClass_01&Prot_02
+
+[DFU_Device.NTamd64]
+;Run-time DFU Interface
+%DFURunTime%        = DFU_Install, USB\Class_FE&SubClass_01&Prot_01
+%DFUMode%           = DFU_Install, USB\Class_FE&SubClass_01&Prot_02
+
+; ================ Class definition ================
+
+[ClassInstall32]
+AddReg = ClassInstall_AddReg
+
+[ClassInstall_AddReg]
+HKR,,,,%ClassName%
+HKR,,NoInstallClass,,1
+HKR,,IconPath,%REG_MULTI_SZ%,"%systemroot%\system32\setupapi.dll,-20"
+HKR,,LowerLogoVersion,,5.2
+
+; =================== Installation ===================
+
+[DFU_Install]
+Include = winusb.inf
+Needs   = WINUSB.NT
+
+[DFU_Install.Services]
+Include     = winusb.inf
+Needs       = WINUSB.NT.Services
+
+[DFU_Install.HW]
+AddReg=Dev_AddReg
+
+
+[Dev_AddReg]
+HKR,,DeviceInterfaceGUIDs,0x10000,"{B05268EC-1891-4F62-891C-2FA75293D230}"
+
+; [DestinationDirs]
+; If your INF needs to copy files, you must not use the DefaultDestDir directive here.  
+; You must explicitly reference all file-list-section names in this section.
+
+; =================== Strings ===================
+
+[Strings]
+ManufacturerName            = "ValueHD Corporation, Inc."
+DFURunTime          		= "DFU Run-Time Interface"
+DFUMode          	   		= "DFU Mode Interface"
+DFUInterface          	   	= "DFU Interface"
+ClassName                   = "Universal Serial Bus devices"
